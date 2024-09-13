@@ -1,13 +1,10 @@
-
-# Container controls
-
 # Container listing commands
 ### listing running docker containers 
 - for seeing containers (running):
 ``` bash
 docker ps
 ```
-or:
+- or:
 ``` bash
 docker container ls
 ```
@@ -16,7 +13,7 @@ docker container ls
 ``` bash
 docker ps -a
 ```
-or:
+- or:
 ``` bash
 docker container ls -a
 ```
@@ -64,30 +61,30 @@ done
 ```
 > this one gives CONTAINER ID, NAME, IMAGE, COMMAND, CREATED AT, RUNNING FOR, PORTS, STATUS, SIZE, LABELS and MOUNTS (this is basically everything that you can get from docker ps)
 ### list last created docker containers
-Show n last created containers (includes all states) (default -1) (in this scenario show last 2)
+- Show n last created containers (includes all states) (default -1) (in this scenario show last 2)
 ``` bash
 docker ps --last 2
 ```
 >instead of --last, -n can be used
 ### list latest created docker container 
-Show the latest created container (includes all states)
+- Show the latest created container (includes all states)
 ``` bash
 docker ps --latest
 ```
 >instead of --latest, -l can be used
 ### list docker containers without truncate
-show the list without truncating the output
+- show the list without truncating the output
 ``` bash
 docker ps --no-trunc
 ```
 ### list docker containers ID only
-show the list with only container IDs
+- show the list with only container IDs
 ``` bash
 docker ps -q
 ```
 >instead of -q, --quiet can be used
 ### listing all docker containers with their size
-show the list with total file sizes
+- show the list with total file sizes
 ``` bash
 docker ps -s
 ```

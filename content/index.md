@@ -7,7 +7,7 @@ So in this obsidian based markdown files documents you can see my personal notes
 - [[DevOps]] : is for DevOps documentations like the tools for it or basics of it
 - [[Programming]] : is for Programming documentations such as the languages and basic of it
 - [[OS]] : is for operating system documentations such as the different OSes and their use cases and how to work with them
-- [[Network]] : is for Network documentations like the tools for it or basics of it
+- [[remote/public/Network/Network]] : is for Network documentations like the tools for it or basics of it
 - [[Security]] : is for Security documentations like the tools for it or basics of it
 
 - [[Other]] : is basically for other stuff that i don't know where should i put them yet
