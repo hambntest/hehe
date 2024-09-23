@@ -1,7 +1,7 @@
 
 ### **Tools Used**
 
-- **[[remote/public/DevOps/Containerization/Docker/Docker]]:** The most popular tool for creating, managing, and running containers.
+- **[[Docker]]:** The most popular tool for creating, managing, and running containers.
 - **[[Kubernetes]]:** A powerful tool for managing and orchestrating containers, especially when dealing with many containers across multiple servers.
 - **[[Helm]]:** A tool used with Kubernetes to help deploy and manage applications in containers more easily.
 

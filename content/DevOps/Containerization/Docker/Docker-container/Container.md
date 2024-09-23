@@ -7,8 +7,8 @@ these are the sheets for commands
 - [[Container-managing|Container-managing]]
 
 ### Image commands
-- [[remote/public/DevOps/Containerization/Docker/commands/Image|Image]]
-- [[remote/public/DevOps/Containerization/Docker/commands/Network|Network]]
-- [[remote/public/DevOps/Containerization/Docker/commands/General|General]]
-- [[remote/public/DevOps/Containerization/Docker/commands/Volume|Volume]]
+- [[Image|Image]]
+- [[remote/public/DevOps/Containerization/Docker/Docker-general/Network|Network]]
+- [[General|General]]
+- [[Volume|Volume]]
 
