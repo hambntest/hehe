@@ -42,6 +42,11 @@ export const defaultListPageLayout: PageLayout = {
   left: [
     Component.PageTitle(),
     Component.MobileOnly(Component.Spacer()),
+    Component.MobileOnly(Component.ModalFullPage(Component.Explorer({ 
+      folderDefaultState: "collapsed",
+      folderClickBehavior: "link",
+      filterFn: (node) => node.name !== "templates",
+    }))),
     Component.Search(),
     Component.Darkmode(),
     Component.DesktopOnly(Component.Explorer()),
