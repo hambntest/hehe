@@ -41,7 +41,7 @@ export const defaultListPageLayout: PageLayout = {
   beforeBody: [Component.Breadcrumbs(), Component.ArticleTitle(), Component.ContentMeta()],
   left: [
     Component.PageTitle(),
-    Component.MobileOnly(Component.Spacer()),
+    // Component.MobileOnly(Component.Spacer()),
     Component.MobileOnly(Component.ModalFullPage(Component.Explorer({ 
       folderDefaultState: "collapsed",
       folderClickBehavior: "link",
