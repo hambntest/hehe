@@ -6,9 +6,4 @@ these are the sheets for commands
 - [[Docker-Container-logs|Docker-Container-logs]]
 - [[Docker-Container-managing|Docker-Container-managing]]
 
-### Image commands
-- [[Docker-Image|Docker-Image]]
-- [[Docker-Network|Docker-Network]]
-- [[Docker-General|Docker-General]]
-- [[Docker-Volume|Docker-Volume]]
 
