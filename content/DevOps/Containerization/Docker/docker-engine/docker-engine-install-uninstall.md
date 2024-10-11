@@ -1,6 +1,8 @@
 
 # Ubuntu
 
+## Install Docker Engine
+
 Before you can install Docker Engine, you need to uninstall any conflicting packages.
 
 The unofficial packages to uninstall are:
@@ -59,14 +61,14 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
     - `docker-buildx-plugin_<version>_<arch>.deb`
     - `docker-compose-plugin_<version>_<arch>.deb`
 5. Install the `.deb` packages. Update the paths in the following example to where you downloaded the Docker packages.
-``` bash
-sudo dpkg -i ./containerd.io_<version>_<arch>.deb \
-  ./docker-ce_<version>_<arch>.deb \
-  ./docker-ce-cli_<version>_<arch>.deb \
-  ./docker-buildx-plugin_<version>_<arch>.deb \
-  ./docker-compose-plugin_<version>_<arch>.deb
-```
-6. start the docker service:
+	``` bash
+	sudo dpkg -i ./containerd.io_<version>_<arch>.deb \
+	  ./docker-ce_<version>_<arch>.deb \
+	  ./docker-ce-cli_<version>_<arch>.deb \
+	  ./docker-buildx-plugin_<version>_<arch>.deb \
+	  ./docker-compose-plugin_<version>_<arch>.deb
+	```
+1. start the docker service:
 ``` bash
 sudo service docker start
 ```
@@ -84,4 +86,44 @@ Always examine scripts downloaded from the internet before running them locally.
 - By default, the script installs the latest stable release of Docker, containerd, and runc. When using this script to provision a machine, this may result in unexpected major version upgrades of Docker. Always test upgrades in a test environment before deploying to your production systems.
 - The script isn't designed to upgrade an existing Docker installation. When using the script to update an existing installation, dependencies may not be updated to the expected version, resulting in outdated versions.
 
-curl -fsSL https://get.docker.com -o get-docker.sh | sudo sh ./get-docker.sh --dry-run
+> **  
+> Tip: preview script steps before running**
+> 
+> You can run the script with the `--dry-run` option to learn what steps the script will run when invoked:
+> 
+> ``` bash
+> curl -fsSL https://get.docker.com -o get-docker.sh
+> sudo sh ./get-docker.sh --dry-run
+> ```
+
+This example downloads the script from [https://get.docker.com/](https://get.docker.com/) and runs it to install the latest stable release of Docker on Linux:
+
+``` bash
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+```
+
+To install the latest version of Docker on Linux from the test channel, run:
+
+``` bash
+curl -fsSL https://test.docker.com -o test-docker.sh
+sudo sh test-docker.sh
+```
+
+## Uninstall Docker Engine
+
+1. Uninstall the Docker Engine, CLI, containerd, and Docker Compose packages:
+    
+    ``` bash 
+    sudo apt-get purge docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin docker-ce-rootless-extras
+    ```
+    
+2. Images, containers, volumes, or custom configuration files on your host aren't automatically removed. To delete all images, containers, and volumes:
+    
+    ``` bash
+    sudo rm -rf /var/lib/docker
+    sudo rm -rf /var/lib/containerd
+    ```
+    
+
+You have to delete any edited configuration files manually.
