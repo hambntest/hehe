@@ -1,10 +1,10 @@
 
 ## Docker image commit
-[[Docker-Image-commit]]
+[[Docker-image-commit]]
 ## Docker image push 
-[[Docker-Image-push]]
+[[Docker-image-push]]
 ## Docker image pull
-[[Docker-Image-pull]]
+[[Docker-image-pull]]
 
 # Docker Image remove
 # Docker  pull

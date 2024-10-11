@@ -1,9 +1,9 @@
 ## Docker general 
-[[Docker-General]]
+[[Docker-general]]
 ## Docker container
-[[Docker-Container]]
+[[Docker-container]]
 ## Docker image
-[[Docker-Image]]
+[[Docker-image]]
 ## Docker network
 [[Docker-Network]]
 ## Docker volume
