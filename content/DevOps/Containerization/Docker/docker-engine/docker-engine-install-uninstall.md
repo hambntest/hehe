@@ -44,17 +44,17 @@ sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 ```
 > if you want a specific version you can get the available versions by 
-> > `apt-cache madison docker-ce | awk '{ print $3 }'`
+>  `apt-cache madison docker-ce | awk '{ print $3 }'`
 > command and simply change like  
-> > `sudo apt-get install docker-ce `
+>  `sudo apt-get install docker-ce `
 > to 
-> >`sudo apt-get install docker-ce=5:27.1.1-1~ubuntu.24.04~noble`
+>  `sudo apt-get install docker-ce=5:27.1.1-1~ubuntu.24.04~noble`
 ### 2. Install from a package
 
 1. Go to [`https://download.docker.com/linux/ubuntu/dists/`](https://download.docker.com/linux/ubuntu/dists/).
 2. Select your Ubuntu version in the list.
-3. 1. Go to `pool/stable/` and select the applicable architecture (`amd64`, `armhf`, `arm64`, or `s390x`).
-4. 1. Download the following `deb` files for the Docker Engine, CLI, containerd, and Docker Compose packages:
+3. Go to `pool/stable/` and select the applicable architecture (`amd64`, `armhf`, `arm64`, or `s390x`).
+4. Download the following `deb` files for the Docker Engine, CLI, containerd, and Docker Compose packages:
 	- `containerd.io_<version>_<arch>.deb`
     - `docker-ce_<version>_<arch>.deb`
     - `docker-ce-cli_<version>_<arch>.deb`
