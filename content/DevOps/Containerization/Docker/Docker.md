@@ -2,9 +2,9 @@
 the main docker docs: https://docs.docker.com/
 
 ## Docker general 
-[[Docker-general]]
+[[docker-general]]
 ## Docker container
-[[Docker-container]]
+[[docker-container]]
 ## Docker image
 [[docker-image]]
 ## Docker network
@@ -12,6 +12,6 @@ the main docker docs: https://docs.docker.com/
 ## Docker volume
 [[docker-volume]]
 ## Dockerfile
-[[Docker-Dockerfile]]
+[[docker-dockerfile]]
 ## Docker compose
 [[Docker-compose]]
