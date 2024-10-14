@@ -6,11 +6,11 @@ the main docker docs: https://docs.docker.com/
 ## Docker container
 [[Docker-container]]
 ## Docker image
-[[Docker-image]]
+[[docker-image]]
 ## Docker network
-[[Docker-Network]]
+[[docker-network]]
 ## Docker volume
-[[Docker-Volume]]
+[[docker-volume]]
 ## Dockerfile
 [[Docker-Dockerfile]]
 ## Docker compose
