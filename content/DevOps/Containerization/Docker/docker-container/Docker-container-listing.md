@@ -1,3 +1,12 @@
+# Description
+
+List containers
+
+| refrence | links                                                                                                                           |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| cli      | [docker container ls docs](https://docs.docker.com/reference/cli/docker/container/ls/)                                          |
+| api      | [docker list container docs](https://docs.docker.com/reference/api/engine/version/v1.47/#tag/Container/operation/ContainerList) |
+
 # CLI
 
 | Commands                          |
@@ -32,21 +41,21 @@ The `--filter` (or `-f`) flag format is a `key=value` pair. If there is more tha
 
 The currently supported filters are:
 
-| Filter              | Description                                                                                                                         |
-| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| `id`                | Container's ID                                                                                                                      |
-| `name`              | Container's name                                                                                                                    |
-| `label`             | An arbitrary string representing either a key or a key-value pair. Expressed as `<key>` or `<key>=<value>`                          |
-| `exited`            | An integer representing the container's exit code. Only useful with `--all`.                                                        |
-| `status`            | One of `created`, `restarting`, `running`, `removing`, `paused`, `exited`, or `dead`                                                |
-| `ancestor`          | Filters containers which share a given image as an ancestor. Expressed as `<image-name>[:<tag>]`, `<image id>`, or `<image@digest>` |
-| `before or since`   | Filters containers created before or after a given container ID or name                                                             |
-| `volume`            | Filters running containers which have mounted a given volume or bind mount.                                                         |
-| `network`           | Filters running containers connected to a given network.                                                                            |
-| `publish or expose` | Filters containers which publish or expose a given port. Expressed as `<port>[/<proto>]` or `<startport-endport>/[<proto>]`         |
-| `health`            | Filters containers based on their healthcheck status. One of `starting`, `healthy`, `unhealthy`, or `none`.                         |
-| `isolation`         | Windows daemon only. One of `default`, `process`, or `hyperv`.                                                                      |
-| `is-task`           | Filters containers that are a "task" for a service. Boolean option (`true` or `false`).                                             |
+| Filter                | Description                                                                                                                         |
+| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `id`                  | Container's ID                                                                                                                      |
+| `name`                | Container's name                                                                                                                    |
+| `label`               | An arbitrary string representing either a key or a key-value pair. Expressed as `<key>` or `<key>=<value>`                          |
+| `exited`              | An integer representing the container's exit code. Only useful with `--all`.                                                        |
+| `status`              | One of `created`, `restarting`, `running`, `removing`, `paused`, `exited`, or `dead`                                                |
+| `ancestor`            | Filters containers which share a given image as an ancestor. Expressed as `<image-name>[:<tag>]`, `<image id>`, or `<image@digest>` |
+| `before` or `since`   | Filters containers created before or after a given container ID or name                                                             |
+| `volume`              | Filters running containers which have mounted a given volume or bind mount.                                                         |
+| `network`             | Filters running containers connected to a given network.                                                                            |
+| `publish` or `expose` | Filters containers which publish or expose a given port. Expressed as `<port>[/<proto>]` or `<startport-endport>/[<proto>]`         |
+| `health`              | Filters containers based on their healthcheck status. One of `starting`, `healthy`, `unhealthy`, or `none`.                         |
+| `isolation`           | Windows daemon only. One of `default`, `process`, or `hyperv`.                                                                      |
+| `is-task`             | Filters containers that are a "task" for a service. Boolean option (`true` or `false`).                                             |
 
  for seeing containers that are running:
 ``` bash
@@ -69,7 +78,23 @@ docker ps --filter "status=running"
 docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Status}}"
 ```
 
-
+| Placeholder    | Description                                                                                              |
+|----------------|----------------------------------------------------------------------------------------------------------|
+| `.ID`          | Container ID                                                                                              |
+| `.Image`       | Image ID                                                                                                  |
+| `.Command`     | Quoted command                                                                                            |
+| `.CreatedAt`   | Time when the container was created                                                                       |
+| `.RunningFor`  | Elapsed time since the container was started                                                              |
+| `.Ports`       | Exposed ports                                                                                             |
+| `.State`       | Container status (for example; "created", "running", "exited")                                            |
+| `.Status`      | Container status with details about duration and health-status                                            |
+| `.Size`        | Container disk size                                                                                       |
+| `.Names`       | Container names                                                                                           |
+| `.Labels`      | All labels assigned to the container                                                                      |
+| `.Label`       | Value of a specific label for this container. For example `{{.Label "com.docker.swarm.cpu"}}`             |
+| `.Mounts`      | Names of the volumes mounted in this container                                                            |
+| `.Networks`    | Names of the networks attached to this container                                                          |
+## filter and format 
 - for prettier name and image and port detailed one:
 ``` bash
 container_ids=$(sudo docker ps -q)
@@ -98,22 +123,22 @@ for id in $container_ids; do
 done
 ```
 > this one gives CONTAINER ID, NAME, IMAGE, COMMAND, CREATED AT, RUNNING FOR, PORTS, STATUS, SIZE, LABELS and MOUNTS (this is basically everything that you can get from docker ps)
-## list last created docker containers
+## list last created docker containers (-n)
 - Show n last created containers (includes all states) (default -1) (in this scenario show last 2)
 ``` bash
 docker ps --last 2
 ```
-## list latest created docker container 
+## latest created docker container (-l)
 - Show the latest created container (includes all states)
 ``` bash
 docker ps --latest
 ```
-## list docker containers without truncate
+## Do not truncate output (--no-trunc)
 - show the list without truncating the output
 ``` bash
 docker ps --no-trunc
 ```
-## list docker containers ID only
+## list docker containers ID only (-q)
 - show the list with only container IDs
 ``` bash
 docker ps -q
@@ -125,3 +150,17 @@ docker ps -s
 ```
 - The "size" information shows the amount of data (on disk) that is used for the _writable_ layer of each container
 - The "virtual size" is the total amount of disk-space used for the read-only _image_ data used by the container and the writable layer.
+
+# API
+
+for getting all the containers information 
+
+``` bash
+curl --unix-socket /var/run/docker.sock http://localhost/containers/json
+```
+
+for getting container names
+
+``` bash
+curl --unix-socket /var/run/docker.sock http://localhost/containers/json | jq -r '.[] | select(.Labels["com.docker.compose.project"]) | .Names[]'
+```
