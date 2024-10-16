@@ -164,3 +164,4 @@ for getting container names
 ``` bash
 curl --unix-socket /var/run/docker.sock http://localhost/containers/json | jq -r '.[] | select(.Labels["com.docker.compose.project"]) | .Names[]'
 ```
+
