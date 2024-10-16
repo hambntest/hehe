@@ -1,32 +1,54 @@
+# CLI
+
+| Commands                          |
+| --------------------------------- |
+| `docker ps [OPTIONS]`             |
+| `docker container ls [OPTIONS]`   |
+| `docker container list [OPTIONS]` |
+| `docker container ps [OPTIONS]`   |
+
+| Option         | Default | Description                                             |
+| -------------- | ------- | ------------------------------------------------------- |
+| `-a, --all`    |         | Show all containers (default shows just running)        |
+| `-f, --filter` |         | Filter output based on conditions provided              |
+| `--format`     |         | Format output using a custom template                   |
+| `-n, --last`   |         | Show n last created containers (includes all states)    |
+| `-l, --latest` | `-1`    | Show the latest created container (includes all states) |
+| `--no-trunc`   |         | Don't truncate output                                   |
+| `-q, --quiet`  |         | Only display container IDs                              |
+| `-s, --size`   |         | Display total file sizes                                |
 ## listing running docker containers 
 - for seeing containers (running):
 ``` bash
 docker ps
 ```
-- or:
-``` bash
-docker container ls
-```
-## listing all docker containers
-- for seeing all containers (running or stopped):
+## Show both running and stopped containers (-a, --all)
+- The `docker ps` command only shows running containers by default. To see all containers, use the `--all` (or `-a`) flag:
 ``` bash
 docker ps -a
 ```
-- or:
-``` bash
-docker container ls -a
-```
->instead of -a, --all can be used
-## listing all docker containers with filter
+## Filtering (--filter)
 - for seeing containers that are running:
 ``` bash
 docker ps --filter "status=running"
 ```
-- for seeing all containers that are stopped:
-``` bash
-docker ps --filter "status=exited"
-```
->instead of --filter, --format or -f can be used
+
+| Filter           | Description                                                                                          |
+|------------------|------------------------------------------------------------------------------------------------------|
+| `id`             | Container's ID                                                                                       |
+| `name`           | Container's name                                                                                     |
+| `label`          | An arbitrary string representing either a key or a key-value pair. Expressed as `<key>` or `<key>=<value>` |
+| `exited`         | An integer representing the container's exit code. Only useful with `--all`.                          |
+| `status`         | One of `created`, `restarting`, `running`, `removing`, `paused`, `exited`, or `dead`                 |
+| `ancestor`       | Filters containers which share a given image as an ancestor. Expressed as `<image-name>[:<tag>]`, `<image id>`, or `<image@digest>` |
+| `before or since`| Filters containers created before or after a given container ID or name                               |
+| `volume`         | Filters running containers which have mounted a given volume or bind mount.                           |
+| `network`        | Filters running containers connected to a given network.                                              |
+| `publish or expose` | Filters containers which publish or expose a given port. Expressed as `<port>[/<proto>]` or `<startport-endport>/[<proto>]` |
+| `health`         | Filters containers based on their healthcheck status. One of `starting`, `healthy`, `unhealthy`, or `none`. |
+| `isolation`      | Windows daemon only. One of `default`, `process`, or `hyperv`.                                        |
+| `is-task`        | Filters containers that are a "task" for a service. Boolean option (`true` or `false`).               |
+
 - you can use --filter with this kind of formats too like in this example the command is going to list container ID and name and the uptime 
 ``` bash
 docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Status}}"
@@ -64,13 +86,11 @@ done
 ``` bash
 docker ps --last 2
 ```
->instead of --last, -n can be used
 ## list latest created docker container 
 - Show the latest created container (includes all states)
 ``` bash
 docker ps --latest
 ```
->instead of --latest, -l can be used
 ## list docker containers without truncate
 - show the list without truncating the output
 ``` bash
@@ -81,11 +101,10 @@ docker ps --no-trunc
 ``` bash
 docker ps -q
 ```
->instead of -q, --quiet can be used
-## listing all docker containers with their size
-- show the list with total file sizes
+## Show disk usage by container (--size)
+- The `docker ps --size` (or `-s`) command displays two different on-disk-sizes for each container:
 ``` bash
 docker ps -s
 ```
->instead of -s, --size can be used
-
+- The "size" information shows the amount of data (on disk) that is used for the _writable_ layer of each container
+- The "virtual size" is the total amount of disk-space used for the read-only _image_ data used by the container and the writable layer.
